@@ -38,4 +38,9 @@
 
 [hw5](https://github.com/a3668/_ws/blob/main/hw5.md)
 
+----
+### 期中
+[期中](https://github.com/a3668/_ws/tree/main/new_project)
+
+[期中詳情](https://github.com/a3668/_ws/blob/main/new_project/midExam.md)
 
