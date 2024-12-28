@@ -101,8 +101,10 @@ function update() {
   }
 
   // score
+  context.textBaseline = "top";
+  context.textAlign = "left";
   context.fillStyle = "white";
-  context.font = "28px Arial";
+  context.font = "15px Arial";
   context.fillText("分数: " + score, 5, 45);
 }
 
@@ -180,7 +182,7 @@ function showScoreBoard() {
   scoreBoard.id = "scoreBoard";
   scoreBoard.style.position = "fixed"; /* 修改為 fixed */
   scoreBoard.style.width = "300px";
-  scoreBoard.style.height = "200px";
+  scoreBoard.style.height = "300px";
   scoreBoard.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
   scoreBoard.style.color = "white";
   scoreBoard.style.fontSize = "20px";
@@ -212,7 +214,7 @@ function showGameRules() {
   let gameRules = document.createElement("div");
   gameRules.style.position = "fixed"; /* 修改為 fixed */
   gameRules.style.width = "300px";
-  gameRules.style.height = "200px";
+  gameRules.style.height = "300px";
   gameRules.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
   gameRules.style.color = "white";
   gameRules.style.fontSize = "20px";

@@ -8,33 +8,44 @@ export function layout(title, content, username = null) {
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
-        <link rel="stylesheet" href="/static/style.css"> <!-- 確保正確引入 -->
+        <link rel="stylesheet" href="/static/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pZw1PqkXjb6V7FepkGqKjH/6PWj5L5yD8D5w1s8hE5b8JX3ygFVU6sFLyJxprN/V4szD1CUPzLpYrP4TfK9gHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
-        <div id="particles-js"></div> <!-- 粒子背景容器 -->
+        <div id="particles-js"></div>
         <nav>
             ${navLinks}
             ${username ? '<button id="theme-toggle" class="theme-toggle"><i class="fas fa-moon"></i></button>' : ''}
         </nav>
-        <div class="container">
+        <div class="container fade-in-on-scroll">
             <h1 class="title">${title}</h1>
             ${content}
         </div>
         <script src="/static/particles.min.js"></script>
         <script>
             particlesJS.load('particles-js', '/static/particles.json', function() {
-              console.log('particles.js loaded - callback');
+                console.log('particles.js loaded - callback');
             });
 
-            // 暗黑模式切換
             const themeToggle = document.getElementById('theme-toggle');
             if (themeToggle) {
-              themeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-                themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-              });
+                themeToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('dark-mode');
+                    themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                });
             }
+
+            // 滾動進入動畫
+            const fadeInElements = document.querySelectorAll('.fade-in-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeInElements.forEach(el => observer.observe(el));
         </script>
     </body>
     </html>
@@ -75,7 +86,7 @@ export function dashboard(username) {
   return layout(
     "主頁",
     `
-    <h2 class="welcome"><i class="fas fa-smile"></i> 歡迎, ${username}！</h2>
+    <h2 class="welcome"><i class="fas fa-smile"></i> 歡迎  ${username}！</h2>
     <p>好玩的小鳥鳥遊戲。</p>
     <a href="/game" class="custom-button"><i class="fas fa-gamepad"></i> 開始遊戲</a>
     `,

@@ -25,7 +25,6 @@ app.use(async (ctx, next) => {
   if (filePath.startsWith("/static")) {
     const staticFiles = `${Deno.cwd()}/static`;
     const relativePath = filePath.replace("/static/", ""); // 移除 '/static/' 前綴
-
     try {
       await send(ctx, relativePath, {
         root: staticFiles,
@@ -67,6 +66,7 @@ async function login(ctx) {
     ctx.cookies.set("sessionId", sessionId, {
       httpOnly: true,
       sameSite: "Lax",
+      maxAge: 3600,
     });
     ctx.response.redirect("/dashboard");
   } else {
