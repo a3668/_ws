@@ -36,5 +36,6 @@
 
 ### 習題 5 -- 請用 ChatGPT 協助你讀懂一個 Blog 的程式範例
 
-[hw4](https://github.com/a3668/_ws/tree/main/hw4)
+[hw5](https://github.com/a3668/_ws/blob/main/hw5.md)
+
 
