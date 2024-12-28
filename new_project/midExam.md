@@ -13,19 +13,25 @@ sameSite: "Lax"：限制跨站請求攜帶此 Cookie
 
 maxAge: 3600,設定會話過期時間
 
+
+
 參數化查詢使用佔位符（如 ?）並將查詢參數作為單獨的輸入傳遞給資料庫引擎，而不是直接將參數拼接到 SQL 字串中。這樣可以避免攻擊者將惡意 SQL 語句注入到查詢中。
 
 1. createUser 函數 db.query("INSERT INTO users (username, password) VALUES (?, ?)", [username, password]);
 
 這裡的 username 和 password 是作為參數傳遞的，而不是直接拼接到 SQL 查詢字串中。
 
+
 2. findUser 函數 db.query("SELECT * FROM users WHERE username = ? AND password = ?", [username, password]);
 
 username 和 password 使用了參數化查詢，有效防止攻擊者通過提交惡意輸入來操控 SQL 查詢。
 
+
 3. saveScore 函數： db.query("INSERT INTO scores (username, score) VALUES (?, ?)", [username, score]);
 
 參數化查詢保護了 username 和 score，避免了惡意注入
+
+
 
 4. getTopScores 函數：db.query("SELECT username, score, timestamp FROM scores ORDER BY score DESC, timestamp ASC LIMIT ?", [limit]);
 
